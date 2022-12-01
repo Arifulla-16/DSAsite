@@ -1,0 +1,159 @@
+*{
+    top:0;
+    left: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background-color: ; */
+    background-image: linear-gradient(#2d40599d,#2d40599d),url("./cartographer.png");
+    font-family: 'Roboto Mono', monospace;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.navBar{
+    position: sticky;
+    top:0;
+    background-color: #EA5455;
+    background-image: linear-gradient(#ea5454b5,#ea5454b5),url("./cartographer.png");
+    height: 80px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro{
+    width:60%;
+    text-align: center;
+    margin: 50px auto auto auto;
+}
+
+.logo{
+    margin-left: 30px;
+    flex-grow: 1;
+}
+
+.sign{
+    flex-grow: 0.1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign>a{
+    border-style: solid;
+    border-width: 2px;
+    padding: 5px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign>a:hover{
+    background-color: black;
+    border-color: black;
+    color:#EA5455;
+    letter-spacing: 2px;
+    transition: all 0.5s;
+}
+
+.logoimg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.loader{
+    display: flex;
+    margin-top: 50px;;
+    justify-content: center;
+    align-items: center;
+}
+
+::placeholder {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.form{
+    width:max(300px,30%);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+
+}
+
+.form-element{
+    display: flex;
+    height:50px;
+    width: min-content;
+}
+
+/* .fa-solid{
+
+} */
+
+.placer{
+    /* background-color: white;
+    width: 200px;
+    display: flex;
+    border-radius: 0px 5px 5px 0px;
+    color: rgb(132, 132, 132);
+    font-size: smaller;
+    align-items: center;
+    cursor: text; */
+    display: none;
+}
+
+.form-boxes{
+    border-radius: 0px 5px 5px 0px;
+    width: 200px;
+    border-style: none;
+}
+
+.form-boxes:focus{
+    outline: none;
+    border-style: solid;
+    border-width: 3px 3px 3px 0;
+    border-color: #F07B3F;
+}
+
+.form-labels{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    background-color: #F07B3F;
+    border-radius: 5px 0 0 5px;
+}
+
+.subbtn{
+    background-color: #FFD467;
+    border-style: none;
+    width: 240px;
+    font-weight: 700;
+    font-size: larger;
+    border-radius: 0 5px 0 5px;
+}
+
+.subbtn:hover{
+    background-color: black;
+    color:#FFD467;
+    letter-spacing: 5px;
+    transition: all 0.5s;
+}
+
+@media only screen and (max-width: 400px) {
+    .sign>a{
+        width:80px;
+    }
+}
