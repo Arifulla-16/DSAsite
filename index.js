@@ -10,49 +10,49 @@ app.use(bodyParser.urlencoded(({extended:true})));
 
 app.use(express.static("public"));
 
-const Mongoose = require("mongoose");
+// const Mongoose = require("mongoose");
 
 
-app.set("view engine","ejs");
+// app.set("view engine","ejs");
 
-const session = require("express-session");
+// const session = require("express-session");
 
-const passport = require("passport");
+// const passport = require("passport");
 
-const passportLocalMongoose = require("passport-local-mongoose");
+// const passportLocalMongoose = require("passport-local-mongoose");
 
-app.use(session({
-    secret: "!!codingToTheHeartsContent**!!",
-    resave: false,
-    saveUninitialized: false
-}));
+// app.use(session({
+//     secret: "!!codingToTheHeartsContent**!!",
+//     resave: false,
+//     saveUninitialized: false
+// }));
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
-app.use(passport.session());
+// app.use(passport.session());
 
-const encrypt = require("mongoose-encryption");
+// const encrypt = require("mongoose-encryption");
 
-Mongoose.connect("mongodb://localhost:27017/authDB",()=>{
-    console.log("cntd");
-});
+// Mongoose.connect("mongodb://localhost:27017/authDB",()=>{
+//     console.log("cntd");
+// });
 
-const userSchema = new Mongoose.Schema({
-    firstName:String,
-    secondName:String,
-    userName:String,
-    email:String,
-    password:String,
-});
+// const userSchema = new Mongoose.Schema({
+//     firstName:String,
+//     secondName:String,
+//     userName:String,
+//     email:String,
+//     password:String,
+// });
 
-userSchema.plugin(passportLocalMongoose);
+// userSchema.plugin(passportLocalMongoose);
 
-const User = new Mongoose.model("User",userSchema);
+// const User = new Mongoose.model("User",userSchema);
 
-passport.use(User.createStrategy());
+// passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 ////////////////////////////////////////////////////////////////////////////////////
 
