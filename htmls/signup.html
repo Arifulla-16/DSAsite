@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">  
     <script src="https://kit.fontawesome.com/828c670315.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Welcome to Coding Club (DSA)</title>
 </head>
 <body>
@@ -16,21 +16,26 @@
 
         <div class="navBar">
             <span class="logo">
-                <img class="logoimg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Codinglogo.jpg/900px-Codinglogo.jpg?20180719092659" alt="logo">
+                <a href="/">
+                    <img class="logoimg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Codinglogo.jpg/900px-Codinglogo.jpg?20180719092659" alt="logo">
+                </a>
             </span>
             <span class="sign navSignin">
-                <a>SIGN IN</a>
+                <a href="/signin">SIGN IN</a>
             </span>
             <span class="sign navSignup">
-                <a>SIGN UP</a>
+                <a href="/signup">SIGN UP</a>
             </span>
         </div>
 
         <div class="intro">
+            <span class="introspan">
+
+            </span>
         </div>
 
         <div class="loader">
-            <form class="form" action="/" method="post">
+            <form class="form" action="/signup" method="POST">
                 <div class="form-element">
                     <label class="form-labels" for="fname">
                         <i class="fa-solid fa-signature fa-lg"></i>
@@ -38,43 +43,56 @@
                     <a class="placer fname">First Name</a>
                     <input class="form-boxes" type="text" placeholder="First Name" name="fname" id="fname">
                 </div>
+                <span class="filler">
+                </span>
                 <div class="form-element">
-                    <label class="form-labels" for="fname">
+                    <label class="form-labels" for="sname">
                         <i class="fa-solid fa-signature fa-lg"></i>
                     </label>
                     <a class="placer sname">Second Name</a>
                     <input class="form-boxes" type="text" placeholder="Second Name" name="sname" id="sname">
                 </div>
+                <span class="filler">
+                </span>
                 <div class="form-element">
-                    <label class="form-labels" for="fname">
+                    <label class="form-labels" for="uname">
                         <i class="fa-solid fa-user fa-lg"></i>
                     </label>
                     <a class="placer uname">User Name</a>
-                    <input class="form-boxes" type="text" placeholder="User Name" name="uname" id="uname">
+                    <input class="form-boxes" type="text" placeholder="User Name" name="username" id="uname">
                 </div>
+                <span class="usercheck">
+                </span>
                 <div class="form-element">
-                    <label class="form-labels" for="fname">
+                    <label class="form-labels" for="email">
                         <i class="fa-solid fa-at fa-lg"></i>
                     </label>
                     <a class="placer email">Email</a>
-                    <input class="form-boxes" type="text" placeholder="Email" name="email" id="email">
+                    <input class="form-boxes" type="email" placeholder="Email" name="email" id="email">
                 </div>
+                <span class="filler">
+                </span>
                 <div class="form-element">
-                    <label class="form-labels" for="fname">
+                    <label class="form-labels" for="password">
                         <i class="fa-solid fa-key fa-lg"></i>
                     </label>
                     <a class="placer password">Password</a>
                     <input class="form-boxes" type="password" placeholder="Password" name="password" id="password">
                 </div>
+                <span class="passcheck">
+                </span>
                 <div class="form-element">
-                    <label class="form-labels" for="fname">
+                    <label class="form-labels" for="cpassword">
                         <i class="fa-solid fa-lock fa-lg"></i>
                     </label>
                     <a class="placer cpassword">Confirm Password</a>
-                    <input class="form-boxes" type="password" placeholder="Confirm Password" name="password" id="cpassword">
+                    <input class="form-boxes" type="password" placeholder="Confirm Password" name="cpassword" id="cpassword">
                 </div>
+                <span class="passmatch">
+                    
+                </span>
                 <div class="form-element">
-                    <input class="subbtn" type="button" value="Signup">
+                    <input class="subbtn" type="submit" value="Signup">
                 </div>
             </form>
         </div>
@@ -82,5 +100,5 @@
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="login.js"></script>
+<script src="/js/signup.js"></script>
 </html>
