@@ -159,4 +159,7 @@ body{
         width:80px;
         font-size: 0.9rem;
     }
+    .sign>a:hover{
+        letter-spacing: -1px;
+    }
 }
