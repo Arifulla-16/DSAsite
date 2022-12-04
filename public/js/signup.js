@@ -2,6 +2,11 @@ var intro = "Welcome to Coding Club's DSA Practice site.\nLet's begin our journe
 var k =0;
 var matcher,checker;
 
+var perfEntries = performance.getEntriesByType("navigation");
+
+if (perfEntries[0].type === "back_forward") {
+    location.reload(true);
+}
 $(".subbtn").attr("type","button");
 
 var timer = setInterval(()=>{
@@ -30,12 +35,32 @@ $("#uname").change((e)=>{
       .then((data) => {
         console.log(data);
         if(data.status===true){
-            $(".usercheck").append("Username Already Exists");
+            $(".usercheck").text("Username Already Exists");
             $(".usercheck").css("color","red");
         }
         else{
             $(".usercheck").text("Username Available");
             $(".usercheck").css("color","green");
+        }
+      });
+    }
+});
+
+$("#email").change((e)=>{
+    if($("#email").val()===""){
+        $(".emailcheck").text("");
+    }
+    else{
+        fetch(`db/email/${$("#email").val()}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if(data.status===true){
+            $(".emailcheck").text("Email Already Exists");
+            $(".emailcheck").css("color","red");
+        }
+        else{
+            $(".emailcheck").text("");
         }
       });
     }

@@ -3,6 +3,7 @@ var intro = "Welcome to Coding Club's DSA Practice site.\nLet's harden some brai
 var k =0;
 
 var timer = setInterval(()=>{
+
     if(k==43){
         $(".intro").append("<br/>");
     }

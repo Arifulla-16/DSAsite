@@ -71,7 +71,7 @@ app.get('/signin/passwordwrong',(req,res)=>{
 app.route("/signin")
 .get((req,res)=>{
     if(req.isAuthenticated()){
-        res.sendFile(__dirname+"/htmls/dash.html");
+        res.redirect(`/user/${req.user.username}/dashboard`);
     }
     else{
         res.render("signin",{msg:""});
@@ -91,14 +91,25 @@ app.route("/signin")
         else{
             passport.authenticate("local",
              {failureRedirect: '/signin/passwordwrong' })(req,res,()=>{
-                res.redirect("/dashboard");
+                res.redirect(`/user/${req.user.username}/dashboard`);
             });
         }
     })
 });
 
-app.get("/db/username/:name",(req,res)=>{
-    User.findOne({username:req.params.name},(e,r)=>{
+app.get("/db/:feild/:name",(req,res)=>{
+    var hint;
+    if(req.params.feild==="email"){
+        hint = {
+            email:req.params.name
+        }
+    }
+    else if(req.params.feild==="username"){
+        hint = {
+            username:req.params.name
+        }
+    }
+    User.findOne(hint,(e,r)=>{
         if(e){
             console.log(e);
         }
@@ -116,7 +127,7 @@ app.get("/db/username/:name",(req,res)=>{
 app.route("/signup")
 .get((req,res)=>{
     if(req.isAuthenticated()){
-        res.redirect("/dashboard");
+        res.redirect(`/user/${req.user.username}/dashboard`);
     }
     else{
         res.sendFile(__dirname+"/htmls/signup.html");
@@ -138,15 +149,20 @@ app.route("/signup")
         }
         else{
             passport.authenticate("local")(req,res,()=>{
-                res.redirect("/dashboard");
+                res.redirect(`/user/${req.user.username}/dashboard`);
             });
         };
     });
 });
 
-app.get("/dashboard",(req,res)=>{
+app.get("/user/:username/:section",(req,res)=>{
     if(req.isAuthenticated()){
-        res.sendFile(__dirname+"/htmls/dash.html");
+        if(req.user.username===req.params.username){
+            res.render(req.params.section,{user:req.user.username});
+        }
+        else{
+            res.redirect("/signin");
+        }
     }
     else{
         res.redirect("/signin");

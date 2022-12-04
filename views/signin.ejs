@@ -1,25 +1,13 @@
 <%- include("header") %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">  
-    <script src="https://kit.fontawesome.com/828c670315.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/login.css">
-    <title>Welcome to Coding Club (DSA)</title>
-</head>
 <body>
     <div class="container">
 
         <div class="navBar">
             <span class="logo">
-                <a href="/">
+                <a class="imglevler" href="/">
                     <img class="logoimg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Codinglogo.jpg/900px-Codinglogo.jpg?20180719092659" alt="logo">
+                    <a class="cct">Coding Club</a>
                 </a>
             </span>
             <span class="sign navSignin">
@@ -40,7 +28,7 @@
                         <i class="fa-solid fa-user fa-lg"></i>
                     </label>
                     <a class="placer uname">User Name</a>
-                    <input class="form-boxes" type="text" placeholder="User Name" name="username" id="uname">
+                    <input class="form-boxes" type="text" placeholder="User Name" name="username" id="uname" required>
                 </div>
                 <div class="form-element">
                     <label class="form-labels" for="fname">
@@ -59,6 +47,18 @@
         </div>
 
     </div>
+    <input type="hidden" id="refreshed" value="no">
+<script type="text/javascript">
+    onpageshow=function(){
+        var e=document.getElementById("refreshed");
+        if(e.value=="no")
+            e.value="yes";
+        else{
+            e.value="no";
+            location.reload();
+        }
+    }
+</script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="/js/signin.js"></script>

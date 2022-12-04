@@ -16,8 +16,9 @@
 
         <div class="navBar">
             <span class="logo">
-                <a href="/">
+                <a class="imglevler" href="/">
                     <img class="logoimg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Codinglogo.jpg/900px-Codinglogo.jpg?20180719092659" alt="logo">
+                    <a>Coding Club</a>
                 </a>
             </span>
             <span class="sign navSignin">
@@ -41,7 +42,7 @@
                         <i class="fa-solid fa-signature fa-lg"></i>
                     </label>
                     <a class="placer fname">First Name</a>
-                    <input class="form-boxes" type="text" placeholder="First Name" name="fname" id="fname">
+                    <input class="form-boxes" type="text" placeholder="First Name" name="fname" id="fname" required>
                 </div>
                 <span class="filler">
                 </span>
@@ -59,7 +60,7 @@
                         <i class="fa-solid fa-user fa-lg"></i>
                     </label>
                     <a class="placer uname">User Name</a>
-                    <input class="form-boxes" type="text" placeholder="User Name" name="username" id="uname">
+                    <input class="form-boxes" type="text" placeholder="User Name" name="username" id="uname" required>
                 </div>
                 <span class="usercheck">
                 </span>
@@ -68,9 +69,9 @@
                         <i class="fa-solid fa-at fa-lg"></i>
                     </label>
                     <a class="placer email">Email</a>
-                    <input class="form-boxes" type="email" placeholder="Email" name="email" id="email">
+                    <input class="form-boxes" type="email" placeholder="Email" name="email" id="email" required>
                 </div>
-                <span class="filler">
+                <span class="emailcheck">
                 </span>
                 <div class="form-element">
                     <label class="form-labels" for="password">
@@ -98,6 +99,18 @@
         </div>
 
     </div>
+    <input type="hidden" id="refreshed" value="no">
+<script type="text/javascript">
+    onpageshow=function(){
+        var e=document.getElementById("refreshed");
+        if(e.value=="no")
+            e.value="yes";
+        else{
+            e.value="no";
+            location.reload();
+        }
+    }
+</script>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="/js/signup.js"></script>
