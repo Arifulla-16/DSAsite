@@ -12,7 +12,7 @@ app.use(express.static("public"));
 
 const Mongoose = require("mongoose");
 
-
+Mongoose.set('strictQuery', true);
 app.set("view engine","ejs");
 
 const session = require("express-session");
