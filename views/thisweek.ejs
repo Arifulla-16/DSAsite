@@ -24,12 +24,12 @@
                         <i class="jseasy fa-solid fa-caret-down"></i>
                     </button>
                     <ul class="dlist easylist">
-                        <li>
-                            <a href="">Linked List</a>
-                        </li>
-                        <li>
-                            <a href="">Graph</a>
-                        </li>
+                        <% ques.forEach((e)=> { %>
+                            <%if(e.difficulty==0){%>
+                            <li>
+                                <a href="/user/<%=user%>/thisweek/<%= e.name%>"><%= e.name%></a>
+                            </li>
+                        <% }}); %>
                     </ul>
             </span>
             <span class="meddd dds">
@@ -39,12 +39,12 @@
                     <i class="jsmed fa-solid fa-caret-down"></i>
                 </button>
                 <ul class="dlist medlist">
-                    <li>
-                        <a href="">Queue</a>
-                    </li>
-                    <li>
-                        <a href="">Array</a>
-                    </li>
+                    <% ques.forEach((e)=> { %>
+                        <%if(e.difficulty==1){%>
+                        <li>
+                            <a href="/user/<%=user%>/thisweek/<%= e.name%>"><%= e.name%></a>
+                        </li>
+                    <% }}); %>
                 </ul>
             </span>
             <span class="harddd dds">
@@ -54,15 +54,12 @@
                     <i class="jshard fa-solid fa-caret-down jsclicker"></i>
                 </button>
                 <ul class="dlist hardlist">
-                    <li>
-                        <a href="">Delete a node in linked list</a>
-                    </li>
-                    <li>
-                        <a href="">Q6</a>
-                    </li>
-                    <li>
-                        <a href="">Q7</a>
-                    </li>
+                    <% ques.forEach((e)=> { %>
+                        <%if(e.difficulty==2){%>
+                        <li>
+                            <a href="/user/<%=user%>/thisweek/<%= e.name%>"><%= e.name%></a>
+                        </li>
+                    <% }}); %>
                 </ul>
             </span>
             </span>
@@ -71,6 +68,106 @@
         </div>
 
         <div class="description">
+
+            <%if(q==null){%>
+                <h1>This week's Questions</h1>
+                <ul>
+                    <% ques.forEach((e)=> { %>
+                        <li><%=e.name%></li>
+                    <%});%>
+                </ul>
+                <p>Start solving... <br> by selecting a question. </p>
+            <%}%>
+
+            <%if(q!=null){%>
+                <%if(q.difficulty==0){%>
+                    <a class="descDiff" style="background-color:rgb(24, 163, 24);">Easy</a>
+                <%}%>
+                <%if(q.difficulty==1){%>
+                    <a class="descDiff" style="background-color:orange">Medium</a>
+                <%}%>
+                <%if(q.difficulty==2){%>
+                    <a class="descDiff" style="background-color:rgb(245, 26, 26)">Hard</a>
+                <%}%>
+                <%}%>
+            <h1 class="descName">
+                <%if(q!=null){%>
+                    <%=q.name%>
+                <%}%>
+            </h1>
+
+            <span class="descDesc">
+                <%if(q!=null){%>
+                    <%=q.discription%>
+                <%}%>
+            </span>
+
+            <span class="descButtons">
+                <%if(q!=null){%>
+                    <a href="<%=q.link%>">
+                        <button class="descLink">
+                            Link
+                        </button>
+                    </a>
+                <%}%>
+                <%if(q!=null){%>
+                    <a href="<%=q.solution%>">
+                        <button class="descSol">
+                            Solution
+                        </button>
+                    </a>
+                <%}%>
+            </span>
+
+
+            <span class="comments">
+                <%if(q!=null){%>
+                    <h1 class="cmtHeading">
+                        Comments
+                    </h1>
+
+                    <form action="" method="post">
+                        <input type="text" name="comment" placeholder="Add Comment" id="commentBox">
+                        <button type="submit" id="cmtBtn">
+                            <i class="fa-solid fa-comment fa-xl"></i>
+                        </button>
+                    </form>
+
+                    <span class="cmtDisplay">
+                        <%q.comments.forEach((e)=>{%>
+                            <span class="cmtItem">
+                                <span class="cmtHead">
+                                    <span class="cmtUser">
+                                        <%=e.username%>
+                                    </span>
+                                    <span class="cmtDate">
+                                        <%var present = new Date();%>
+                                        <%const d = e.date;%>
+                                        <%if(d.getYear()!=present.getYear() || d.getMonth() != present.getMonth()){%>
+                                            long time ago
+                                        <%} else if((d.getHours() < present.getHours() && d.getDate() == present.getDate()) || (d.getHours() == present.getHours() && (present.getDate()==d.getDate()))){%>
+                                            <%=present.getHours()-d.getHours()%> hours ago
+                                        <%} else if(d.getHours() < present.getHours() && d.getDate() != present.getDate() || (d.getHours() == present.getHours() && (present.getDate()!=d.getDate()))){%>
+                                            <%=present.getDate()-d.getDate()%> days ago
+                                        <%} else if(d.getHours() > present.getHours() && (present.getDate()-d.getDate()==1) ){%>
+                                            <%=present.getHours()-d.getHours()+24%> hours ago
+                                        <%} else if(d.getHours() > present.getHours() && (present.getDate()-d.getDate()>1) ){%>
+                                            <%=present.getDate()-d.getDate()-1%> days ago
+                                        <%}%>
+                                        <!-- <%=e.date%> -->
+                                    </span>
+                                </span>
+                                <span class="cmtMain">
+                                    <%=e.text%>
+                                </span>
+                            </span>
+                        <%});%>               
+                    </span>
+                <%}%>
+
+
+            </span>
+
 
         </div>
     </div>

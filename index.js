@@ -53,6 +53,30 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+const commentSchema = new Mongoose.Schema({
+    username:String,
+    text:String,
+    date:{
+        type:Date,
+        default:Date.now
+    }
+});
+
+const questionSchema = new Mongoose.Schema({
+    name:String,
+    discription:String,
+    link:String,
+    topic:String,
+    difficulty:Number,
+    solution:String,
+    week:Number,
+    comments:[commentSchema]
+
+});
+
+const Question = Mongoose.model('Question',questionSchema);
+const Comment = Mongoose.model('Comment',commentSchema);
+
 ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -155,10 +179,128 @@ app.route("/signup")
     });
 });
 
-app.get("/user/:username/:section",(req,res)=>{
+app.get("/user/:username/dashboard",(req,res)=>{
     if(req.isAuthenticated()){
         if(req.user.username===req.params.username){
-            res.render(req.params.section,{user:req.user.username});
+            res.render("dashboard",{user:req.user.username});
+        }
+        else{
+            res.redirect("/signin");
+        }
+    }
+    else{
+        res.redirect("/signin");
+    }
+});
+
+app.get("/user/:username/thisweek",(req,res)=>{
+    if(req.isAuthenticated()){
+        if(req.user.username===req.params.username){
+            Question.find((err,ans)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    res.render("thisweek",{user:req.user.username,ques:ans,q:null});
+                }
+            });
+        }
+        else{
+            res.redirect("/signin");
+        }
+    }
+    else{
+        res.redirect("/signin");
+    }
+});
+
+app.get("/user/:username/thisweek/:que",(req,res)=>{
+    if(req.isAuthenticated()){
+        if(req.user.username===req.params.username){
+            req.params.que.replaceAll("%20"," ");
+            Question.findOne({name:req.params.que},(err,ans)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    Question.find((err,ansi)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            ans.comments.forEach((e)=>{
+                                console.log(e);
+                            });
+                            res.render("thisweek",{user:req.user.username,ques:ansi,q:ans});
+                        }
+                    });
+                }
+            });
+
+        }
+        else{
+            res.redirect("/signin");
+        }
+    }
+    else{
+        res.redirect("/signin");
+    }
+});
+
+app.post("/user/:username/thisweek/:que",(req,res)=>{
+    if(req.isAuthenticated()){
+        var qque = req.params.que;
+        if(req.user.username===req.params.username){
+            req.params.que.replaceAll("%20"," ");
+
+            Question.findOne({name:req.params.que},(err,ans)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    var cmt ={
+                        username:req.user.username,
+                        text:req.body.comment
+                    };
+
+                    Question.updateOne({_id:ans._id},{comments:[cmt,...ans.comments]},(err,docs)=>{
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            console.log(docs);
+                            res.redirect(`/user/${req.user.username}/thisweek/${qque}`); 
+                        }
+                    });
+                }
+            });   
+        }
+        else{
+            res.redirect("/signin");
+        }
+    }
+    else{
+        res.redirect("/signin");
+    }
+});
+
+app.get("/user/:username/prevweek",(req,res)=>{
+    if(req.isAuthenticated()){
+        if(req.user.username===req.params.username){
+            var topics=[];
+            Question.find((err,ans)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    ans.forEach(e=>{
+                        if(!topics.includes(e.topic)){
+                            topics.push(e.topic);
+                        }
+                    });
+                }
+                res.render("prevweek",{user:req.user.username,ques:ans,topics:topics});
+            });
         }
         else{
             res.redirect("/signin");

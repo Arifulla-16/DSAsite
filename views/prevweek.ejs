@@ -14,6 +14,19 @@
 
 <body>
     <%- include("navbar") %>
+
+    <%topics.forEach(t=>{%>
+        <span class="topic">
+            <h1><%=t%></h1>
+            <%ques.forEach(q=>{%>
+                <%if(q.topic===t && q.week==0){%>
+                    <p class="topiItem">
+                        <%=q.name%>
+                    </p>
+                <%}%>
+            <%});%>
+        </span>
+    <%});%>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="/js/dash.js"></script>

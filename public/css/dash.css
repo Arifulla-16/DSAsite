@@ -64,10 +64,115 @@ body{
 .description{
     height:calc(100vh - 80px);
     width: 80%;
-    /* background-image: linear-gradient(0deg,#54dbeab5,#ea5454b5),url("../images/cartographer.png"); */
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 10px;
+    overflow-y: auto;
+}
+
+.descDiff{
+    width: 80px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.descDesc{
+    position: relative;
+    margin-top: 20px;
+}
+
+.descSol,.descLink{
+    width: 100px;
+    background-color: #ffd467;
+    border-style: none;
+    height: 25px;
+    border-radius: 10px;
+}
+
+.descSol:hover,.descLink:hover{
+    background-color:black;
+    color:#ffd467;
+}
+
+.descButtons{
+    display: flex;
+    column-gap: 10px;
+}
+
+.descButtons>a{
+    margin-top: 30px;
+    text-decoration: none;
+    border-radius: 10px;
+    display: flex;
+    width: 100px;
+    height: 25px;
+    align-items: center;
+}
+
+.comments{
+    margin-top: 20px;
+}
+
+.cmtHeading{
+    margin-bottom: 30px;
+}
+
+#commentBox{
+    background-color: rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-color: #ffd467;
+    border-width: 0px 0px 2px 0px;
+    width: 150px;
+}
+
+#cmtBtn{
+    background-color: #f07a3f00;
+    border-style: none;
+    cursor: pointer;
+    color:rgb(42, 42, 42);
+}
+
+#commentBox:focus{
+    outline: none;
+    width: 200px;
+    transition: width 0.5s;
+}
+
+#commentBox::placeholder{
+    color: black;
+}
+
+.cmtDisplay,.cmtItem{
+    display: flex;
+    flex-direction: column;
+}
+
+.cmtItem{
+    margin-top: 25px;
+}
+
+.cmtHead{
+    display: flex;
+    column-gap: 10px;
+    align-items: baseline;
+}
+
+.cmtUser{
+    font-weight: 500;
+}
+.cmtDate{
+    font-size: smaller;
+    word-spacing: -5px;
+}
+
+.cmtMain{
+    margin-top: 5px;
 }
 
 .questions{
+    min-height: max-content;
     height:calc(100vh - 80px);
     width: 20%;
     background-image: linear-gradient(#ffd46789,#ffd46789),url("../images/cartographer.png");
